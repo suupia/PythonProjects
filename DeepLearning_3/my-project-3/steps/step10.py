@@ -101,5 +101,5 @@ class SquareTest(unittest.TestCase):
           y = square(x)
           y.backward()
           num_grad = numerical_diff(square, x)
-          flg = np.allclose(x.grad, num_grad)
+          flg = np.allclose(x.grad, num_grad)  # どのくらいの誤差を許容しているのかはわからなかった
           self.assertTrue(flg)

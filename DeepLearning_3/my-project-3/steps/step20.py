@@ -99,15 +99,8 @@ def as_array(x):
       return x
 
 
-def as_variable(obj):
-    if isinstance(obj, Variable):
-        return obj
-    return Variable(obj)
-
-
 class Function:
       def __call__(self,*inputs):
-            inputs = [as_variable(x) for x in inputs]
             xs = [x.data for x in inputs]
             ys = self.forward(*xs)  # アスタリスクをつけてアンパッキング
             # xs = [x0, x1]の場合、self.forward(*xs)とすれば、それはself.forward(x0, x1)として呼び出すことと同じになる
@@ -191,6 +184,15 @@ def numerical_diff(f,x,eps=1e-4):
       return (y1.data - y0.data ) / (2 * eps)
 
 
-x = Variable(np.array(2.0))
-y = x + np.array(3.0)
+a = Variable(np.array(3.0))
+b = Variable(np.array(2.0))
+c = Variable(np.array(1.0))
+
+# y = add(mul(a,b),c)
+y = a * b + c
+
+y.backward()
+
 print(y)
+print(a.grad)
+print(b.grad)

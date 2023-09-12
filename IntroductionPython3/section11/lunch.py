@@ -1,4 +1,4 @@
-from . import fast
+from .choices import fast
 
 place = fast.pick()
 print(f"Let's go to {place}!")
