@@ -48,6 +48,10 @@ class Variable:
 
       @property
       def size(self):
+            return self.data.size
+
+      @property
+      def dtype(self):
             return self.data.dtype
 
       def __len__(self):
